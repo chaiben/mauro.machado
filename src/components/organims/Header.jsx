@@ -26,6 +26,10 @@ const HeaderFormated = styled.header`
 `
 
 const Header = () => {
+  const csv = useSelector(state => {
+    return state.csv
+  })
+  const { env } = csv
   const {
     headerBottomColor,
     headerImage,
@@ -34,7 +38,8 @@ const Header = () => {
     headerTopColor,
     headerFontTitleColor,
     headerFontSubtitleColor
-  } = useSelector(state => state.config.config)
+  } = csv.data.config
+
   return (
     <HeaderFormated
       headerBottomColor={headerBottomColor}
@@ -50,6 +55,7 @@ const Header = () => {
         <Title color={headerFontSubtitleColor} as='h2'>
           {headerSubtitle}
         </Title>
+        {(env && env === 'pre') && <Title color='red' as='h5'>pre</Title>}
       </div>
     </HeaderFormated>
   )

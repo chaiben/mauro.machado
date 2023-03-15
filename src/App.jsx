@@ -1,19 +1,21 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from './components/organims/Header'
-import { CONFIG } from './config'
-import { fetchConfig } from './store/config.slice'
+import { fetchConfig, setEnv } from './store/csv.slice'
 
-function App () {
-  const { reqStatus, config } = useSelector(state => state.config)
-  const { isError, isLoading } = reqStatus
+function App ({ env = 'pro' }) {
+  const { reqStatus, data } = useSelector((state) => state.csv)
+  const { config } = data
+  const { status, isError, isLoading } = reqStatus
+
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchConfig(CONFIG.CSV))
+    dispatch(setEnv(env))
+    dispatch(fetchConfig(env))
   }, [dispatch])
 
-  if (isLoading) return <>Loading...</>
+  if (status === 'initial' || isLoading) return <>Loading...</>
   if (isError) {
     return <>Error</>
   }

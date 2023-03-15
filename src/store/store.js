@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import configReducer from './config.slice'
+import csvReducer from './csv.slice'
 
 export const store = configureStore({
   reducer: {
-    config: configReducer
+    csv: csvReducer
   }
 })
