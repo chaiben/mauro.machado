@@ -1,29 +1,26 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Header from './components/organims/Header'
 import { CONFIG } from './config'
-import { parseConfig } from './helpers'
-import useLoadCSV from './hooks/useLoadCSV'
+import { fetchConfig } from './store/config.slice'
 
 function App () {
-  const { loading, isError, error, data } = useLoadCSV(CONFIG.CSV, false)
-  if (loading) return (<>Loading...</>)
+  const { reqStatus, config } = useSelector(state => state.config)
+  const { isError, isLoading } = reqStatus
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchConfig(CONFIG.CSV))
+  }, [dispatch])
+
+  if (isLoading) return <>Loading...</>
   if (isError) {
-    console.log(error)
-    return (<>Error</>)
+    return <>Error</>
   }
-  const config = parseConfig(data)
   document.title = `${config.headerTitle} - ${config.headerSubtitle}`
-  console.log(config)
   return (
     <>
-      <Header
-        headerBottomColor={config.headerBottomColor}
-        headerTopColor={config.headerTopColor}
-        headerTitle={config.headerTitle}
-        headerImage={config.headerImage}
-        headerSubtitle={config.headerSubtitle}
-        headerFontTitleColor={config.headerFontTitleColor}
-        headerFontSubtitleColor={config.headerFontSubtitleColor}
-      />
+      <Header />
     </>
   )
 }

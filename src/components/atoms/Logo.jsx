@@ -6,13 +6,7 @@ const LogoFormated = styled.img`
 `
 
 const Logo = ({ src, alt, title }) => {
-  return (
-    <LogoFormated
-      src={src}
-      alt={alt}
-      title={title}
-    />
-  )
+  return <LogoFormated src={src} alt={alt} title={title} />
 }
 
 export default Logo

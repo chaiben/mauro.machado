@@ -1,4 +1,4 @@
-const parseConfig = (data) => {
+const parseConfig = data => {
   const result = {}
 
   data.forEach(conf => {

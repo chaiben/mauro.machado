@@ -14,8 +14,12 @@ function useLoadCSV (CSVPath, header = true) {
         header,
         download: true,
         complete: function (results) {
-          if (results.errors.length) { setError(results.errors) }
-          if (results.data.length) { setData(results.data) }
+          if (results.errors.length) {
+            setError(results.errors)
+          }
+          if (results.data.length) {
+            setData(results.data)
+          }
           setLoading(false)
         }
       })
