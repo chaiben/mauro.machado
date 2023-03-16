@@ -1,9 +1,12 @@
 {
+  "homepage": "http://chaiben.github.io/mauro.machado",
   "name": "mauro.machado",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "format": "prettier-standard --format",
     "dev": "vite",
     "build": "vite build",
@@ -16,6 +19,7 @@
     }
   },
   "dependencies": {
+    "gh-pages": "^4.0.0",
     "@reduxjs/toolkit": "^1.9.3",
     "papaparse": "^5.4.0",
     "react": "^18.2.0",

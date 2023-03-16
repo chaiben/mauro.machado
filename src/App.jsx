@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Header from './components/organims/Header'
+import { Cv, Header } from './components/organims/'
 import { fetchConfig, setEnv } from './store/csv.slice'
 
 function App ({ env = 'pro' }) {
@@ -23,6 +23,7 @@ function App ({ env = 'pro' }) {
   return (
     <>
       <Header />
+      <Cv />
     </>
   )
 }

@@ -26,10 +26,7 @@ const HeaderFormated = styled.header`
 `
 
 const Header = () => {
-  const csv = useSelector(state => {
-    return state.csv
-  })
-  const { env } = csv
+  const csv = useSelector(state => state.csv)
   const {
     headerBottomColor,
     headerImage,
@@ -55,7 +52,7 @@ const Header = () => {
         <Title color={headerFontSubtitleColor} as='h2'>
           {headerSubtitle}
         </Title>
-        {(env && env === 'pre') && <Title color='red' as='h5'>pre</Title>}
+        {(csv.env === 'pre') && <Title color='red' as='h5'>pre</Title>}
       </div>
     </HeaderFormated>
   )

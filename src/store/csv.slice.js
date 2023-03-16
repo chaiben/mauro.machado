@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { CONFIG } from '../config'
-import { getCSV, parseConfig } from '../helpers'
+import { getCSV, groupByField, parseConfig } from '../helpers'
 
 export const fetchConfig = createAsyncThunk(
   'csv/fetchConfigStatus',
@@ -58,7 +58,13 @@ const csvSlice = createSlice({
       state.reqStatus.hasData = !!(
         action.payload && action.payload.length === 0
       )
-      state.data = action.payload
+      state.data.config = action.payload.config
+      state.data.category = action.payload.category.sort(
+        (a, b) => a.order > b.order ? 1 : -1
+      )
+      state.data.cv = groupByField(action.payload.cv, 'category')
+
+      console.log(action.payload)
     })
   }
 })
